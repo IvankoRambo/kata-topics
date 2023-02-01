@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { getPhotos } from './formAPI';
 import { InProgressCard, GenericObject, Photo } from '../../app/interfaces';
-import { PHOTOS_PER_PAGE } from '../../app/constants';
 
 const initialState = {
   image: {
@@ -51,9 +50,17 @@ export const inProgressCardSlice = createSlice({
         state.image.status = 'loading';
       })
       .addCase(searchForPhoto.fulfilled, (state, action) => {
+        const len = action.payload?.response?.results?.length;
+
         state.image.status = 'idle';
-        state.image.data = action.payload?.response?.results?.length
-          ? action.payload.response.results[Math.floor(Math.random() * PHOTOS_PER_PAGE)] : {} as Photo;
+
+        if (!len) {
+          state.image.data = {} as Photo;
+        } else {
+          state.image.data =
+            action.payload?.response?.results[Math.floor(Math.random() * len)];
+        }
+
         state.image.inited = true;
       })
       .addCase(searchForPhoto.rejected, (state) => {

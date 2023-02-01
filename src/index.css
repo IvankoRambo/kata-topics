@@ -117,6 +117,7 @@ label {
 .flex-stretch {
   display: flex;
   align-items: stretch;
+  flex-flow: row wrap;
 }
 
 .card {
