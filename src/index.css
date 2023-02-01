@@ -11,3 +11,122 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --background: #eee;
+  --red: #f44336;
+  --blue: #3f50b5;
+}
+
+body {
+  background-color: var(--background);
+}
+
+img {
+  margin-bottom: 4px;
+  width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+button.primary {
+  background-color: var(--blue);
+}
+
+button.secondary {
+  background-color: var(--red);
+}
+
+button:disabled {
+  cursor: default;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.btnsContainer .primary {
+  margin-right: 15px;
+}
+
+.btnsContainer .secondary {
+  margin-left: 15px;
+}
+
+.btnContainer, .btnsContainer {
+  margin-top: 8px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form {
+  width: 400px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.errored {
+  color: var(--red);
+  font-size: 12px;
+}
+
+label {
+  margin-right: 20px;
+}
+
+.field {
+  margin-top: 5px;
+}
+
+.author {
+  margin: 5px 0 5px;
+}
+
+.span-field {
+  margin-top: 2px;
+}
+
+.flex-stretch {
+  display: flex;
+  align-items: stretch;
+}
+
+.card {
+  margin: 10px 20px 10px 0;
+}
+
+.card img {
+  width: 250px;
+}
+
+.card:first-child {
+  margin-left: 5px;
+}
