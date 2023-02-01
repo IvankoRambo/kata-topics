@@ -58,7 +58,6 @@ export const inProgressCardSlice = createSlice({
       })
       .addCase(searchForPhoto.rejected, (state) => {
         state.image.status = 'failed';
-        state.image.inited = true;
       })
   },
 });
