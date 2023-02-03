@@ -1,16 +1,23 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, PreloadedState, combineReducers, ThunkAction, Action } from '@reduxjs/toolkit';
 import inProgressCardSlice from '../features/form/inProgressCardSlice';
 import cardsSlice from '../features/cards/cardsSlice';
 
-export const store = configureStore({
-  reducer: {
-    inProgressCard: inProgressCardSlice,
-    cards: cardsSlice,
-  },
+const rootReducer = combineReducers({
+  inProgressCard: inProgressCardSlice,
+  cards: cardsSlice,
 });
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export const setupStore = (preloadedState?: PreloadedState<RootState>) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+
+export const store = setupStore();
+
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
